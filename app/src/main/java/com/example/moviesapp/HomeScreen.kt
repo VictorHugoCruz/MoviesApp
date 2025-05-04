@@ -16,29 +16,30 @@ import com.example.moviesapp.ui.components.RowGenreMovie
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
+    onMovieClicked: () -> Unit
 ) {
     LazyColumn(modifier= modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
-            MovieCarousel(modifier = Modifier.padding(top = 24.dp, bottom = 24.dp),movieList = DataSource.horrorList)
+            MovieCarousel(modifier = Modifier.padding(top = 24.dp, bottom = 24.dp),movieList = DataSource.horrorList, onClick = onMovieClicked)
         }
         item {
-            RowGenreMovie(movieGenreList = DataSource.dramaList, text = "Drama", imageSize = MovieImageSize.SMALL)
+            RowGenreMovie(movieGenreList = DataSource.dramaList, text = "Drama", imageSize = MovieImageSize.SMALL, onClick = onMovieClicked)
         }
         item {
-            RowGenreMovie(movieGenreList = DataSource.horrorList, text = "Horror", imageSize = MovieImageSize.SMALL)
+            RowGenreMovie(movieGenreList = DataSource.horrorList, text = "Horror", imageSize = MovieImageSize.SMALL, onClick = onMovieClicked)
         }
 
         item {
-            RowGenreMovie(movieGenreList = DataSource.forYouList, text = "For You", imageSize = MovieImageSize.MEDIUM)
+            RowGenreMovie(movieGenreList = DataSource.forYouList, text = "For You", imageSize = MovieImageSize.MEDIUM, onClick = onMovieClicked)
         }
         item {
-            RowGenreMovie(movieGenreList = DataSource.thrillerList, text = "Thriller", imageSize = MovieImageSize.SMALL)
+            RowGenreMovie(movieGenreList = DataSource.thrillerList, text = "Thriller", imageSize = MovieImageSize.SMALL, onClick = onMovieClicked)
         }
         item {
-            RowGenreMovie(movieGenreList = DataSource.animationList, text = "Animation", imageSize = MovieImageSize.SMALL)
+            RowGenreMovie(movieGenreList = DataSource.animationList, text = "Animation", imageSize = MovieImageSize.SMALL, onClick = onMovieClicked)
         }
         item {
-            RowGenreMovie(movieGenreList = DataSource.scienceFictionList, text = "Science Fiction", imageSize = MovieImageSize.SMALL)
+            RowGenreMovie(movieGenreList = DataSource.scienceFictionList, text = "Science Fiction", imageSize = MovieImageSize.SMALL, onClick = onMovieClicked)
         }
     }
 }

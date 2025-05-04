@@ -16,7 +16,13 @@ import com.example.moviesapp.data.DataSource
 import com.example.moviesapp.data.Movie
 
 @Composable
-fun RowGenreMovie (modifier: Modifier= Modifier, movieGenreList: List<Movie>, text: String, imageSize: MovieImageSize) {
+fun RowGenreMovie(
+    modifier: Modifier = Modifier,
+    movieGenreList: List<Movie>,
+    text: String,
+    imageSize: MovieImageSize,
+    onClick: () -> Unit
+) {
     Column(modifier=modifier.padding(start = 16.dp, bottom = 24.dp),
     horizontalAlignment = Alignment.Start
     ) {
@@ -26,7 +32,7 @@ fun RowGenreMovie (modifier: Modifier= Modifier, movieGenreList: List<Movie>, te
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(movieGenreList.size){
-                movie -> MovieImage(movie = movieGenreList[movie], size = imageSize)
+                movie -> MovieImage(movie = movieGenreList[movie], size = imageSize, onClick = {onClick()})
             }
         }
     }
@@ -39,6 +45,7 @@ private fun RowGenreMoviePreview() {
     RowGenreMovie(
         movieGenreList = DataSource.horrorList,
         text = "crime",
-        imageSize = MovieImageSize.MEDIUM
+        imageSize = MovieImageSize.MEDIUM,
+        onClick = {}
     )
 }

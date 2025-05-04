@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+    <string name="search_route">Search</string>
+    <string name="download_route">Download</string>
+    <string name="profile_route">Profile</string>
+    <string name="detail_route">Detail</string>
 </resources>

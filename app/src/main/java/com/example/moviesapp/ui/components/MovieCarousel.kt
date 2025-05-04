@@ -1,12 +1,12 @@
 package com.example.moviesapp.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -26,7 +26,7 @@ import com.example.moviesapp.data.Movie
 import kotlin.math.absoluteValue
 
 @Composable
-fun MovieCarousel(modifier: Modifier = Modifier, movieList: List<Movie>) {
+fun MovieCarousel(modifier: Modifier = Modifier, movieList: List<Movie>, onClick: () -> Unit) {
     val pagerState = rememberPagerState(
         pageCount = { movieList.size }
     )
@@ -57,18 +57,20 @@ fun MovieCarousel(modifier: Modifier = Modifier, movieList: List<Movie>) {
                             stop = 1f,
                             fraction = 1f - pageOffset.coerceIn(0f, 1f)
                         )
-                        scaleX = lerp(1.2f,1.1f,clampedOffset)
-                        scaleY = lerp(1.2f,1.1f,clampedOffset)
+                        scaleX = lerp(1.2f, 1.1f, clampedOffset)
+                        scaleY = lerp(1.2f, 1.1f, clampedOffset)
                     },
 
                 elevation = CardDefaults.elevatedCardElevation(12.dp)
 
             ) {
                 Image(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clickable(onClick = onClick),
                     contentScale = ContentScale.Crop,
                     painter = painterResource(movieList[page].imageUrl),
-                    contentDescription = movieList[page].title
+                    contentDescription = movieList[page].title,
                 ) // Card content
             }
         }
@@ -80,6 +82,7 @@ fun MovieCarousel(modifier: Modifier = Modifier, movieList: List<Movie>) {
 @Composable
 private fun PagerStateMoviePreview() {
     MovieCarousel(
-        movieList = DataSource.horrorList
+        movieList = DataSource.horrorList,
+        onClick = {  }
     )
 }

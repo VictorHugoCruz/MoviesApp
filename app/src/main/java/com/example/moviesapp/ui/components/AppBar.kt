@@ -9,11 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.example.moviesapp.R
+import com.example.moviesapp.MoviesApp
 
 @ExperimentalMaterial3Api
 @Composable
-fun AppBar(modifier: Modifier = Modifier) {
+fun AppBar(modifier: Modifier = Modifier,
+    titleRoute : MoviesApp
+) {
     CenterAlignedTopAppBar(
         modifier=modifier,
         colors = TopAppBarColors(
@@ -23,6 +25,6 @@ fun AppBar(modifier: Modifier = Modifier) {
             scrolledContainerColor = Color.LightGray,
             navigationIconContentColor = Color.Cyan
         ),
-        title = {Text(text = stringResource(R.string.app_name), style = MaterialTheme.typography.headlineMedium )},
+        title = {Text(text = stringResource(titleRoute.title), style = MaterialTheme.typography.headlineMedium )},
     )
 }

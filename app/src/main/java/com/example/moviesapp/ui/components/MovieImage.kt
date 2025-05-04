@@ -1,9 +1,8 @@
 package com.example.moviesapp.ui.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -20,26 +19,35 @@ import com.example.moviesapp.data.GenreMovie
 import com.example.moviesapp.data.Movie
 
 
-enum class MovieImageSize{
+enum class MovieImageSize {
     SMALL, MEDIUM, LARGE
 }
 
 @Composable
-fun MovieImage(modifier: Modifier = Modifier, movie: Movie, size: MovieImageSize) {
-    val sizeImage = when(size){
-        MovieImageSize.SMALL -> {listOf(120.dp, 200.dp)}
+fun MovieImage(
+    modifier: Modifier = Modifier,
+    movie: Movie,
+    size: MovieImageSize,
+    onClick: (movie: Movie) -> Unit = {}
+) {
+    val sizeImage = when (size) {
+        MovieImageSize.SMALL -> {
+            listOf(120.dp, 200.dp)
+        }
+
         MovieImageSize.MEDIUM -> {
             listOf(220.dp, 360.dp)
         }
+
         else -> {
             listOf(400.dp, 600.dp)
         }
     }
 
-    Box(modifier= modifier) {
-        Card(modifier= Modifier, elevation = CardDefaults.elevatedCardElevation(12.dp)) {
+    Box(modifier = modifier.clickable(onClick = { onClick(movie) })) {
+        Card(modifier = Modifier, elevation = CardDefaults.elevatedCardElevation(12.dp)) {
             Image(
-                modifier= Modifier.size(sizeImage[0], sizeImage[1]),
+                modifier = Modifier.size(sizeImage[0], sizeImage[1]),
                 contentScale = ContentScale.FillHeight,
                 painter = painterResource(movie.imageUrl),
                 contentDescription = movie.title
